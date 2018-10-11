@@ -3,24 +3,24 @@
 <head>
 <style>
 body {
-    background-color: lightblue;
+    background-color: yellow;
 }
 
 h1 {
-    color: white;
+    color: black;
     text-align: center;
 }
 
 p {
     font-family: verdana;
-    font-size: 20px;
+    font-size: 40px;
 }
 </style>
 </head>
 <body>
 
-<h1>My First CSS Example</h1>
-<p>This is a paragraph.</p>
+<h1>Tiger-Book</h1>
+<p>A place by Tigers for Tigers</p>
 
 </body>
 </html>
