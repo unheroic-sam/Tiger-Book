@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignIn from './components/SignIn/signIn';
 import Register from './components/Register/Register';
 import Home from './components/Home/Home';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
     	const { isSignedIn, route } = this.state;
     	return (
       		<div>
+      			<NavigationBar isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
       			{ route === 'home'
       				?<div>
       					<Home />
