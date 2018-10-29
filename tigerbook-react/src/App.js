@@ -11,7 +11,13 @@ class App extends Component {
 		super()
 		this.state = {
 			isSignedIn: false,
-			route: 'signIn'
+			route: 'signIn',
+      user: {
+        userId: '',
+        name: '',
+        joined: '',
+        entries: ''
+      }
 		}
 	}
 
