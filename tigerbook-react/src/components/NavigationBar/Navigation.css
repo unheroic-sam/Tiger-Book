@@ -1,17 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Spicy+Rice');
+@import url('https://fonts.googleapis.com/css?family=Oswald:200');
+
 .wrapper-nav {
 	display: flex;
+	font-family: 'Oswald', sans-serif;
 }
 
 .createPost {
+	
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 	background: red;
 	background-color: yellow;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> elliott
 }
 
 .visitCommunity {
+	
 	display: flex;
 	flex: 1;
 	justify-content: center;
@@ -20,7 +31,12 @@
 	background: blue;
 }
 
+<<<<<<< HEAD
 .account {
+=======
+.account{
+	
+>>>>>>> elliott
 	display: flex;
 	flex: 1;
 	justify-content: center;
@@ -28,7 +44,12 @@
 	background-color: blue;
 }
 
+<<<<<<< HEAD
 .sign-out {
+=======
+.signOut{
+	
+>>>>>>> elliott
 	display: flex;
 	flex: 1;
 	justify-content: center;
