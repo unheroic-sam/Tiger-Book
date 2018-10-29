@@ -1,19 +1,37 @@
 .SignedInNav {
 	display: flex;
+	border: 2px solid black;
+	padding: 10px;
 }
 
-.col1 {
-	flex: 1;
+.create-post {
 	display: flex;
-	justify-content: flex-end;
-	background-color: yellow;
-
-}
-
-.col2 {
 	flex: 1;
-	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: blue;
+	background: red;
+}
+
+.visit-community {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	background: blue;
+}
+
+.account {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	background: orange;
+}
+
+.sign-out {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+	background: yellow;
 }
