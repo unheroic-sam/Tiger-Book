@@ -1,72 +1,37 @@
 .wrapper-nav {
 	display: flex;
-	border: 2px solid black;
-	padding: 10px;
 }
 
-<<<<<<< HEAD
-.create-post {
-=======
 .createPost {
->>>>>>> e1663822c7fa51f35edfd4a55ea732cdaf98fa84
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-<<<<<<< HEAD
 	background: red;
-}
-=======
-	width: 200;
 	background-color: yellow;
->>>>>>> e1663822c7fa51f35edfd4a55ea732cdaf98fa84
-
-.visit-community {
-	display: flex;
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	background: blue;
 }
 
-<<<<<<< HEAD
-.account {
-=======
 .visitCommunity {
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	width: 200;
-	background-color: blue;
+	width
+	background: blue;
 }
 
-.account{
->>>>>>> e1663822c7fa51f35edfd4a55ea732cdaf98fa84
+.account {
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-<<<<<<< HEAD
-	background: orange;
+	background-color: blue;
 }
 
 .sign-out {
-=======
-	width: 200;
-	background-color: yellow;
-}
-
-.signOut{
->>>>>>> e1663822c7fa51f35edfd4a55ea732cdaf98fa84
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-<<<<<<< HEAD
 	background: yellow;
-=======
-	width: 200;
-	background-color: blue;
->>>>>>> e1663822c7fa51f35edfd4a55ea732cdaf98fa84
 }

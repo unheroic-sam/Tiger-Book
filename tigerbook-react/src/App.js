@@ -3,7 +3,7 @@ import SignIn from './components/SignIn/signIn';
 import Register from './components/Register/Register';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
-import MainWindow from './components/MainWindow/MainWindow';
+import Home from './components/Home/Home';
 
 class App extends Component {
   
@@ -37,7 +37,7 @@ class App extends Component {
       			<NavigationBar isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
       			{ route === 'home'
       				?<div>
-      					<MainWindow />
+      					<Home />
       				</div>
       			:(
       					route === 'register'
