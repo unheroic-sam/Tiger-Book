@@ -11,7 +11,13 @@ class App extends Component {
 		super()
 		this.state = {
 			isSignedIn: false,
-			route: 'signIn'
+			route: 'signIn',
+      user: {
+        userId: '',
+        name: '',
+        joined: '',
+        entries: ''
+      }
 		}
 	}
 
@@ -34,9 +40,10 @@ class App extends Component {
       					<MainWindow />
       				</div>
       			:(
-      				this.state.route === 'signIn'
-      					?<SignIn onRouteChange={this.onRouteChange} />
-      					:<Register onRouteChange={this.onRouteChange} />
+      					route === 'register'
+                ?<Register onRouteChange={this.onRouteChange} />
+                :<SignIn onRouteChange={this.onRouteChange} />
+
       			)
       		}
       		</div>
