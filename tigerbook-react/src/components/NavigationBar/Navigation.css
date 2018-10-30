@@ -14,11 +14,7 @@
 	align-items: center;
 	background: red;
 	background-color: yellow;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> elliott
 }
 
 .visitCommunity {
@@ -31,12 +27,8 @@
 	background: blue;
 }
 
-<<<<<<< HEAD
+
 .account {
-=======
-.account{
-	
->>>>>>> elliott
 	display: flex;
 	flex: 1;
 	justify-content: center;
@@ -44,12 +36,7 @@
 	background-color: blue;
 }
 
-<<<<<<< HEAD
 .sign-out {
-=======
-.signOut{
-	
->>>>>>> elliott
 	display: flex;
 	flex: 1;
 	justify-content: center;
