@@ -5,6 +5,7 @@ import CreatePostBox from './components/CreatePostBox/CreatePostBox';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
 import Home from './components/Home/Home';
+import { UtilContextProvider } from './context/utilContext';
 
 class App extends Component {
   
@@ -15,10 +16,11 @@ class App extends Component {
 			route: 'signIn',
       showPostCreate: false,
       user: {
-        userId: '',
+        id: '',
         name: '',
-        joined: '',
-        entries: ''
+        email: '',
+        entries: 0,
+        joined: ''
       }
 		}
 	}
@@ -27,6 +29,8 @@ class App extends Component {
     this.setState({
       id: data.id,
       name: data.name,
+      email: data.email,
+      entries: data.entries,
       joined: data.joined
     })
   }
@@ -51,6 +55,7 @@ class App extends Component {
   	render() {
     	const { isSignedIn, route, showPostCreate } = this.state;
       return (
+        <UtilContextProvider>
       		<div>
             <NavigationBar onRouteChangePost={this.onRouteChangePost} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
             { route === 'home'
@@ -59,12 +64,13 @@ class App extends Component {
       				</div>
       			:(
       					route === 'register'
-                ?<Register onRouteChange={this.onRouteChange} />
-                :<SignIn onRouteChange={this.onRouteChange} />
+                ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
+                :<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
 
       			)
       		}
       		</div>
+          </UtilContextProvider>
     	);
   	};
 }
