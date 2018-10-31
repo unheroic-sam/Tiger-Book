@@ -1,0 +1,6 @@
+.post-box-wrapper {
+	display: flex;
+	border: 5px solid black;
+	height: 300px;
+	width: 50%;
+}

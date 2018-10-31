@@ -43,6 +43,8 @@ class App extends Component {
   onRouteChangePost = (route) => {
     if(route === 'createPostBox'){
       this.setState({showPostCreate: true})
+    } else if(route === 'closePostBox'){
+      this.setState({showPostCreate: false})
     }
   }
   	
