@@ -7,6 +7,9 @@ import './Home.css';
 class Home extends Component {
 	
 	render() {
+		
+		const { onRouteChange, showPostCreate } = this.props;
+
 		return(
 			<div className='wrapper'>
 				<div className='LiveFeed'>

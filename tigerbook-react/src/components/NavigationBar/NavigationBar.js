@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navigation.css';
 
-const NavigationBar = ({onRouteChange,isSignedIn}) => {
+const NavigationBar = ({ onRouteChange, isSignedIn, showPostCreate }) => {
 	if(isSignedIn === false) {
 		return(
 			<div className='wrapper-nav'>
@@ -15,7 +15,7 @@ const NavigationBar = ({onRouteChange,isSignedIn}) => {
 		return (
 			<div className='wrapper-nav'>
 				<div className= 'createPost'>
-					<h1>Create Post</h1>
+					<h1 onClick = {() => onRouteChange('createPostBox')}>Create Post</h1>
 				</div>
 				<div className='visitCommunity'>
 					<h1>Visit Community</h1>

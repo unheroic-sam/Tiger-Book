@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignIn from './components/SignIn/signIn';
 import Register from './components/Register/Register';
+import CreatePostBox from './components/CreatePostBox/CreatePostBox';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
 import Home from './components/Home/Home';
@@ -12,6 +13,7 @@ class App extends Component {
 		this.state = {
 			isSignedIn: false,
 			route: 'signIn',
+      showPostCreate: false,
       user: {
         userId: '',
         name: '',
@@ -26,18 +28,20 @@ class App extends Component {
 			this.setState({isSignedIn: false})
 		} else if (route === 'home') {
 			this.setState({isSignedIn: true})
-		}
+    } else if (route === 'createPostBox') {
+      this.setState({showPostCreate: true})
+    } 
 		this.setState({route: route});
 	}
   	
   	render() {
-    	const { isSignedIn, route } = this.state;
+    	const { isSignedIn, route, showPostCreate } = this.state;
     	return (
       		<div>
-      			<NavigationBar isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
-      			{ route === 'home'
+      			<NavigationBar isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
+            { route === 'home'
       				?<div>
-      					<Home />
+                <Home showPostCreate={showPostCreate} onRouteChange={this.onRouteChange}/>
       				</div>
       			:(
       					route === 'register'
