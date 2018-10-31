@@ -23,25 +23,37 @@ class App extends Component {
 		}
 	}
 
+  loadUser = (data) => {
+    this.setState({
+      id: data.id,
+      name: data.name,
+      joined: data.joined
+    })
+  }
+
 	onRouteChange = (route) => {
 		if(route === 'signOut') {
 			this.setState({isSignedIn: false})
 		} else if (route === 'home') {
 			this.setState({isSignedIn: true})
-    } else if (route === 'createPostBox') {
-      this.setState({showPostCreate: true})
     } 
 		this.setState({route: route});
 	}
+
+  onRouteChangePost = (route) => {
+    if(route === 'createPostBox'){
+      this.setState({showPostCreate: true})
+    }
+  }
   	
   	render() {
     	const { isSignedIn, route, showPostCreate } = this.state;
-    	return (
+      return (
       		<div>
-      			<NavigationBar isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
+            <NavigationBar onRouteChangePost={this.onRouteChangePost} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
             { route === 'home'
       				?<div>
-                <Home showPostCreate={showPostCreate} onRouteChange={this.onRouteChange}/>
+                <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
       				</div>
       			:(
       					route === 'register'
