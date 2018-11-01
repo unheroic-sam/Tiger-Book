@@ -1,3 +1,17 @@
+
+import React from 'react';
+//import './CreatePostBox.css';
+
+
+const CreatePostBox = () => {
+	
+	return(
+		<div> 
+			<h1>Post</h1>
+		</div>
+	)
+
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './CreatePostBox.css';
