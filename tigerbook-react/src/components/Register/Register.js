@@ -5,25 +5,40 @@ class Register extends React.Component {
 		super(props)
 		this.state = {
 			name: '',
-			signInEmail: '',
-			signInPassword: ''
+			email: '',
+			password: ''
 		}
 	}
 
 	onNameChange = (event) => {
 		this.setState({name: event.target.value});
-	}
+	};
 
 	onEmailChange = (event) => {
-		this.setState({signInEmail: event.target.value});
+		this.setState({email: event.target.value});
 	};
 
 	onPasswordChange = (event) => {
-		this.setState({signInPassword: event.target.value});
+		this.setState({password: event.target.value});
 	};
 
-	onSubmitSignIn = () => {
-		this.props.onRouteChange('sign');
+	onSubmitRegister = () => {
+		fetch('http://localhost:3000/register', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				name: this.state.name,
+				email: this.state.email,
+				password: this.state.password
+			})
+		})
+			.then(res => res.json())
+			.then(user => {
+				if(user) {
+					this.props.loadUser(user)
+					this.props.onRouteChange('signIn')
+				}
+			})
 	}
 
 	render() {
@@ -71,7 +86,7 @@ class Register extends React.Component {
 					      		className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 	
 					      		type="submit" 
 					      		value="Register"
-					      		onClick={() => onRouteChange('signIn')} 
+					      		onClick={this.onSubmitRegister} 
 					      	/>
 					    	</div>
 					    	<div className="lh-copy mt3">
