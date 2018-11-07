@@ -1,30 +1,66 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './CreatePostBox.css';
+import React from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { UtilContextConsumer  } from '../../context/utilContext';
-//import './CreatePostBox.css';
+import PropTypes from 'prop-types';
 
+class CreatePostBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      dropdownOpen: false
+    };
 
-class CreatePostBox extends Component {
-	render() {
-	const { onRouteChangePost } = this.props;
+    this.toggle = this.toggle.bind(this);
+  }
 
-		return(
-			<UtilContextConsumer>
-			 {(utilContext) => (
-		 		<div className='post-box-wrapper'> 
-					<p>Create a post</p>
-					<div className="lh-copy mt3">
-						<p onClick={utilContext.toggleCreatePostModal} href="#0" className="f6 link dim black db">Close</p>
-					</div>
-				</div>
-			 )}
-			</UtilContextConsumer>
-		)
-	}
+  toggle() {
+    this.setState({
+      modal: !this.state.modal,
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+
+  render() {
+    const { onRouteChangePost } = this.props;
+    return (
+      	<UtilContextConsumer>
+	      	{(utilContext) => (
+	      		<div>
+        			<Modal isOpen={utilContext.state.showCreatePostModal} toggle={this.toggle} className={this.props.className}>
+        				<ModalHeader toggle={utilContext.toggleCreatePostModal}>Create a post</ModalHeader>
+         				<ModalBody>
+            				<ButtonDropdown direction='left' isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                      <DropdownToggle caret>
+                        Choose a Community
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem>Community 1</DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>Community 2</DropdownItem>
+                      </DropdownMenu>
+                    </ButtonDropdown>
+                    <label>Tittle</label>
+                    <input>
+                    </input>
+                    <label>Text</label>
+                    <input>
+                    </input>
+          			</ModalBody>
+          			<ModalFooter>
+            			<Button color="primary" onClick={this.toggle}>Post</Button>{' '}
+            			<Button color="secondary" onClick={utilContext.toggleCreatePostModal}>Close</Button>
+          			</ModalFooter>
+        			</Modal>
+      			</div>
+	      	)}
+		</UtilContextConsumer>
+    );
+  }
 }
 
 CreatePostBox.propTypes = {
 	onRouteChangePost: PropTypes.func
 }
+
 export default CreatePostBox;
