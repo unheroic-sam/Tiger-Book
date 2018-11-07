@@ -1,21 +1,9 @@
-
-import React from 'react';
-//import './CreatePostBox.css';
-
-
-const CreatePostBox = () => {
-	
-	return(
-		<div> 
-			<h1>Post</h1>
-		</div>
-	)
-
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './CreatePostBox.css';
 import { UtilContextConsumer  } from '../../context/utilContext';
+//import './CreatePostBox.css';
+
 
 class CreatePostBox extends Component {
 	render() {
@@ -39,5 +27,4 @@ class CreatePostBox extends Component {
 CreatePostBox.propTypes = {
 	onRouteChangePost: PropTypes.func
 }
-
 export default CreatePostBox;
