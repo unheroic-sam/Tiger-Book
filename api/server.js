@@ -68,7 +68,6 @@ app.post('/register', (req,res) => {
 })
 
 app.post('/submitPost', (req,res) => {
-	console.log(req.body);
 	const post = db.insert({
 		user_id: req.body.user_id,
 		community_id: req.body.community_id,
@@ -83,9 +82,19 @@ app.post('/submitPost', (req,res) => {
 app.get('/getPosts', (req,res) => {
 	db.select('*').from('posts')
 		.then(posts => {
-			res.json(posts);
-		}) 
-})
+			Promise.all(posts.map(post => {
+				return db.select('name').from('users').where('id', '=', post.user_id)
+				.first()
+				.then(user => {
+					post.name = user.name;
+					return post
+				})
+			})).then(response => {
+				return res.json(posts)
+			})
+			
+		})
+})		
 
 app.listen(3000, () => {
 	console.log('app is running on port 3000');

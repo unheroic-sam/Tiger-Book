@@ -9,9 +9,9 @@ const NavigationBar = ({ onRouteChange, isSignedIn, onRouteChangePost }) => {
 				<div className = 'title'>
 					<h1>TIGER BOOK</h1>
 				</div>
-				 	<div className='col2'>
-				 	<h1 onClick = {() => onRouteChange('home')}>home</h1>
-				 </div>
+				<div className='col2'>
+				  	<h1 onClick = {() => onRouteChange('home')}>home</h1>
+				</div>
 			</div>
 		)
 	} else {
