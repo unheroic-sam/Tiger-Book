@@ -6,7 +6,7 @@ export class UtilContextProvider extends React.Component {
 
 	state = {
 		showCreatePostModal: false,
-		user: {}
+		user: {},
 	}
 
 	toggleCreatePostModal = () => {
@@ -16,7 +16,7 @@ export class UtilContextProvider extends React.Component {
 	}
 
 	setCurrentUser = (user) => {
-		this.stateState({ user })
+		this.setState({ user })
 	}
 
 	render() {
@@ -24,6 +24,7 @@ export class UtilContextProvider extends React.Component {
 			<UtilContext.Provider
 				value={{
 					state: this.state,
+					setCurrentUser: this.setCurrentUser,
 					toggleCreatePostModal: this.toggleCreatePostModal
 				}}
 			>

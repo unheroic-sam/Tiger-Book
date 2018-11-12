@@ -7,10 +7,10 @@ const knex = require('knex');
 const db = knex({
 	client: 'pg',
 	connection: {
-		host: '127.0.0.1',
-		user: '',
-		password: '',
-		database: 'tigerbook'
+		host: 'tigerbookdb.cd7v1sp0q4f1.us-east-2.rds.amazonaws.com',
+		user: 'Tigerbook',
+		password: 'Tiger8ook9:40',
+		database: 'postgres'
 	}
 })
 
@@ -31,7 +31,9 @@ app.post('/signin', (req,res) => {
 					})
 				.catch(err => res.status(400).json('Unable to get user'))
 			} else {
-				res.status(400).json('Wrong credentials')
+				res.status(400).json({
+					'message': 'Wrong credentials'
+				})
 			}
 		})
 		.catch(err => res.status(400).json('Wrong credentials'))
@@ -63,6 +65,26 @@ app.post('/register', (req,res) => {
 			.catch(trx.rollback)
 		})
 		.catch(err => res.status(400).json('Unable to register user'))
+})
+
+app.post('/submitPost', (req,res) => {
+	console.log(req.body);
+	const post = db.insert({
+		user_id: req.body.user_id,
+		community_id: req.body.community_id,
+		title: req.body.title,
+		created: new Date(),
+		content: req.body.content
+	}).into('posts').then(d => {
+		return res.json([]);
+	})
+})
+
+app.get('/getPosts', (req,res) => {
+	db.select('*').from('posts')
+		.then(posts => {
+			res.json(posts);
+		}) 
 })
 
 app.listen(3000, () => {

@@ -1,33 +1,29 @@
 import React from 'react';
+import { PostsContextConsumer } from '../../context/postsContext';
 
-const LiveFeed = () => {
+class LiveFeed extends React.Component {
 
-	// state = {
-	// 	posts: []
-	// }
+	render() {
+		return (
+			<PostsContextConsumer>
+				{(postsContext) => (
+						<div>
+							<button onClick={postsContext.getAllPosts}>Refresh</button>
+							<div>
+								{
+									postsContext.state.posts.map((post) => {
+										return (
+											<h4>{post.title}</h4>
+										);
+									})
+								}
+							</div>
+						</div>
+					)}
+			</PostsContextConsumer>
+		);
+	}
 
-	// componentDidMount() {
-
-	// 	fetch('/posts').then(stream => {
-	// 		this.setState({
-	// 			posts: stream.json();
-	// 		});
-	// 	})
-
-
-	// }
-
-	return(
-		<div>
-			<h1>LiveFeed</h1>
-			{
-				// posts.map(post => (
-				// 	<h3>{post.title}</h3>
-				// 	<span>{post.content}</span>
-				// ));
-			}
-		</div>
-	)
 }
 
 export default LiveFeed;
