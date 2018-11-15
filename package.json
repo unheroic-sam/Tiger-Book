@@ -1,0 +1,6 @@
+{
+	"name": "tigerbook",
+	"scripts": {
+		"start": "npm start --prefix=api/ | npm start --prefix tigerbook-react"
+	}
+}

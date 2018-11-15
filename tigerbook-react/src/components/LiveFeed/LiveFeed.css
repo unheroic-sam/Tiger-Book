@@ -1,0 +1,40 @@
+.LiveFeed {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-wrapper {
+	border: 1px solid black;
+	background: white;
+	width: 100%;
+}
+
+.profile-picture {
+	border: 1px solid black;
+	width: 100px;
+	height: 100px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.media {
+	flex: 1 0 auto;
+}
+
+.post-username {
+	font-size: 12px;
+	text-decoration: bold;
+	color: black;
+}
+
+.post-title {
+	font-size: 14px;
+}
+
+.post-text {
+	font-size: 15px;
+}
+
+.post-content {
+	border-top: 1px solid;
+}

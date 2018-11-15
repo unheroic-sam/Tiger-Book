@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import SignIn from './components/SignIn/signIn';
 import Register from './components/Register/Register';
 import CreatePostBox from './components/CreatePostBox/CreatePostBox';
@@ -56,12 +56,10 @@ class App extends Component {
     	const { isSignedIn, route, showPostCreate } = this.state;
       return (
         <UtilContextProvider>
-      		<div>
+      		<Fragment>
             <NavigationBar onRouteChangePost={this.onRouteChangePost} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
             { route === 'home'
-      				?<div>
-                <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
-      				</div>
+      				? <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
       			:(
       					route === 'register'
                 ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
@@ -69,7 +67,7 @@ class App extends Component {
 
       			)
       		}
-      		</div>
+      		</Fragment>
           </UtilContextProvider>
     	);
   	};

@@ -1,29 +1,42 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { PostsContextConsumer } from '../../context/postsContext';
+import { Media } from 'reactstrap';
+import './LiveFeed.css';
 
 class LiveFeed extends React.Component {
 
 	render() {
 		return (
-			<PostsContextConsumer>
+				<PostsContextConsumer>
 				{(postsContext) => (
-						<div>
-							<div>
-								{
-									postsContext.state.posts.map((post) => {
-										return (
-											<div>
-												<h4>Tittle: {post.title}</h4>
-												<h5>Content: {post.content}</h5>
-												<h6>User: {post.name}</h6>
-											</div>
-										);
-									})
-								}
-								<button onClick={postsContext.getAllPosts}>Refresh</button>
-							</div>
-						</div>
-					)}
+					<Fragment>
+					{
+						postsContext.state.posts.map((post, i) => {
+						const photourl = (post.user.profile_picture == null)
+							? "/images/default_profile_picture.jpg"
+							: post.user.profile_picture;
+							return (
+								<Media className='post-wrapper' key={i}>
+								    <Media left href="#">
+					        			<Media object src={photourl} alt="" className='profile-picture' />
+					      			</Media>
+					      			<Media body>
+					        			<Media heading className='post-username'>
+					          				{post.user.name}
+					        			</Media>
+					        			<Media heading className='post-title'>
+					          				{post.title}
+					        			</Media>
+					        				<div className='post-text post-content'>
+					        					{post.content}
+					        				</div>
+					      			</Media>
+					    		</Media>
+							);
+						})
+					}
+				</Fragment>
+			)}
 			</PostsContextConsumer>
 		);
 	}

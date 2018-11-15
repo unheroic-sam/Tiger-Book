@@ -7,7 +7,8 @@ class signIn extends React.Component {
 		super(props)
 		this.state = {
 			signInEmail: '',
-			signInPassword: ''
+			signInPassword: '',
+			error: null,
 		}
 	}
 
@@ -23,7 +24,13 @@ class signIn extends React.Component {
 		this.props.onRouteChange('home');
 	}
 
-	onSubmitSignIn = (utilContext) => {
+	onSubmitSignIn = (utilContext, e = null) => {
+
+		if(e) {
+			e.preventDefault();
+		}
+
+		this.setState({ error: null });
 		fetch('http://localhost:3000/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -32,12 +39,19 @@ class signIn extends React.Component {
 				password: this.state.signInPassword
 			})
 		})
-			.then(response => response.json())
-			.then(user => {
-				if(user.id) {
-					utilContext.setCurrentUser(user)
-					this.props.onRouteChange('home');
-				}
+			.then(response => {
+				response.json().then((user) => {
+					if(response.ok) {
+						if(user.id) {
+							utilContext.setCurrentUser(user)
+							this.props.onRouteChange('home');
+						}
+					} else {
+						this.setState({
+							error: user.message
+						});
+					}
+				});
 			})
 	}
 
@@ -48,11 +62,12 @@ class signIn extends React.Component {
 		return(
 			<UtilContextConsumer>
 				{(utilContext) => (
-					<div>	
+				<form onSubmit={(e) => { this.onSubmitSignIn(utilContext, e) }}>	
 				<article className="br5 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">	
 						<main className="pa4 black-80">
 				 			<fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 				      			<legend className="f4 fw6 ph0 mh0">Sign In</legend>
+				      			{ this.state.error && <p className="text-danger">{this.state.error}</p> }
 				      			<div className="mt3">
 				        			<label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
 				        			<input 
@@ -89,7 +104,7 @@ class signIn extends React.Component {
 				    		</div>
 						</main>
 				</article>
-			</div>
+			</form>
 			)}
 			</UtilContextConsumer>
 		);	

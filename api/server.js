@@ -4,6 +4,8 @@ const cors = require('cors');
 const bcrypt = require('bcrypt-nodejs')
 const knex = require('knex');
 
+const mailer = require('nodemailer');
+
 const db = knex({
 	client: 'pg',
 	connection: {
@@ -36,7 +38,9 @@ app.post('/signin', (req,res) => {
 				})
 			}
 		})
-		.catch(err => res.status(400).json('Wrong credentials'))
+		.catch(err => res.status(400).json({
+					'message': 'Wrong credentials'
+				}))
 })
 
 app.post('/register', (req,res) => {
@@ -58,8 +62,15 @@ app.post('/register', (req,res) => {
 						joined: new Date()
 					})
 					.then(user => {
-						res.json(user[0])
+
+						mailer.sendVerifyEmail(email).then((err, response) => {
+							return res.json(user[0])
+						});
+
 					})
+					.catch(err => res.json({
+						message: 'could not save user'
+					}))
 			})
 			.then(trx.commit)
 			.catch(trx.rollback)
@@ -80,19 +91,18 @@ app.post('/submitPost', (req,res) => {
 })
 
 app.get('/getPosts', (req,res) => {
-	db.select('*').from('posts')
+	db.select('*').from('posts').orderBy('created', 'desc')
 		.then(posts => {
 			Promise.all(posts.map(post => {
-				return db.select('name').from('users').where('id', '=', post.user_id)
+				return db.select('name', 'profile_picture').from('users').where('id', '=', post.user_id)
 				.first()
 				.then(user => {
-					post.name = user.name;
+					post.user = user;
 					return post
 				})
 			})).then(response => {
 				return res.json(posts)
 			})
-			
 		})
 })		
 
