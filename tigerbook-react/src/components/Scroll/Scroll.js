@@ -3,11 +3,9 @@ import './Scroll.css';
 
 const Scroll = (props) => {
 	return (
-		// <div className='center'>
-			<div className='scroll-box'>
-				{props.children}
-			</div>
-		// </div>
+		<div className='scroll-box'>
+			{props.children}
+		</div>
 	)
 }
 

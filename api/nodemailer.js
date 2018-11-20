@@ -5,8 +5,8 @@ const app = express();
 const stmpTransport = nodemailer.createTransport('SMTP', {
 	service: 'Gmail',
 	auth: {
-		user: 'Gmail ID',
-		pass: 'Gmail Pass'
+		user: 'noreplytigerbook@gmail.com',
+		pass: 'Tiger8ook9:40'
 	}
 })
 
@@ -14,7 +14,7 @@ const stmpTransport = nodemailer.createTransport('SMTP', {
 function sendVerifyEmail(email) {
 
 	const mailOptions = {
-		from: 'your name <email>',
+		from: 'your name <noreplytigerbook@gmail.com>',
 		to: email,
 		subject: "Verify Email Account",
 		html: "Please verify by clicking this link <a href="#">change later</a>."
@@ -24,11 +24,6 @@ function sendVerifyEmail(email) {
 
 }
 
-function differentEmailThing() {
-	
-}
-
 module.exports = {
 	sendVerifyEmail,
-	differentEmailThing
 };

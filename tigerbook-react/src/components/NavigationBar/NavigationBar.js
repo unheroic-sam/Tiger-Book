@@ -2,7 +2,7 @@ import React from 'react';
 import './Navigation.css';
 import { UtilContextConsumer  } from '../../context/utilContext';
 
-const NavigationBar = ({ onRouteChange, isSignedIn, onRouteChangePost }) => {
+const NavigationBar = ({ onRouteChange, isSignedIn, onRouteChangePost, displayAccountPage, route }) => {
 	if(isSignedIn === false) {
 		return(
 			<div className='wrapper-nav'>
@@ -15,6 +15,18 @@ const NavigationBar = ({ onRouteChange, isSignedIn, onRouteChangePost }) => {
 			</div>
 		)
 	} else {
+		if(route === 'Account') {
+			return(
+				<div className='wrapper-nav'>
+					<div className= 'createPost'>
+						<h1 onClick = {() => onRouteChange('home')}>Home</h1>
+					</div>
+					<div className='visitCommunity'>
+						<h1 onClick={() => onRouteChange('signOut')}>Sign Out</h1>
+					</div>
+				</div>
+			)
+		}
 		return (
 			<UtilContextConsumer>
 			{(utilContext) => (
@@ -26,7 +38,7 @@ const NavigationBar = ({ onRouteChange, isSignedIn, onRouteChangePost }) => {
 						<h1>Visit Community</h1>
 					</div>
 					<div className='account'>
-						<h1>Account</h1>
+						<h1 onClick={() => onRouteChange('Account')}>Account</h1>
 					</div>
 					<div className='sign-out'>
 						<h1 onClick = {() => onRouteChange('signOut')}>Sign Out</h1>

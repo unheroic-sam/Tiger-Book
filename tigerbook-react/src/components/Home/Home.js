@@ -8,6 +8,7 @@ import { PostsContextProvider  } from '../../context/postsContext';
 import { PostsContextConsumer } from '../../context/postsContext';
 import Scroll from '../Scroll/Scroll';
 
+
 class Home extends Component {
 	
 	render() {
@@ -16,34 +17,31 @@ class Home extends Component {
 				<PostsContextConsumer>
 				{(postsContext) => (
 						<UtilContextConsumer>
-											{(utilContext) => (
-												<Fragment>
-												{
-													utilContext.state.showCreatePostModal
-													?<CreatePostBox onRouteChangePost={this.props.onRouteChangePost}/>
-													:null
-												}
-												
-													<div className='wrapper'>
-														<div className='LiveFeed'>
-															<div className="LiveFeedNav">
-																<button onClick={postsContext.getAllPosts}>Refresh</button>
-															</div>
-															<Scroll>
-																<LiveFeed />
-															</Scroll>
-														</div>
-														<div className='Communities_search'>
-															<Communities_search />
-														</div>
-													</div>
-													
-											</Fragment>
-											)}
-										</UtilContextConsumer>
+							{(utilContext) => (
+								<Fragment>
+								{
+									utilContext.state.showCreatePostModal
+									?<CreatePostBox onRouteChangePost={this.props.onRouteChangePost}/>
+									:null
+								}
+								<div className='wrapper'>
+									<div className='LiveFeed'>
+										<Scroll>
+											<div className="LiveFeedNav">
+												<button className='refresh-button' onClick={postsContext.getAllPosts}>Refresh</button>
+											</div>
+											<LiveFeed />
+										</Scroll>
+									</div>
+									<div className='Communities_search'>
+										<Communities_search />
+									</div>
+								</div>
+							</Fragment>
+							)}
+						</UtilContextConsumer>
 				)}
 				</PostsContextConsumer>
-				
 			</PostsContextProvider>
 		)
 	}	

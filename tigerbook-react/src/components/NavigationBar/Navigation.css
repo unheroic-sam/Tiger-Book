@@ -5,6 +5,7 @@
 	display: flex;
 	font-family: 'Oswald', sans-serif;
 	flex: 0 0 75px;
+	background-color: #3A3A3A;
 }
 
 
@@ -13,33 +14,27 @@
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background: red;
-	background-color: yellow;
+	color: white;
 
 }
+
 .createPost {
 	
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background: red;
-	background-color: yellow;
-	color: black;
-	border: 3px solid black;
-
+	color: white;
 
 }
 
 .visitCommunity {
-	color: black;
+	color: white;
 	display: flex;
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	border: 3px solid black;
-	border-color: black;
-	background: yellow;
+
 }
 
 
@@ -48,9 +43,7 @@
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background-color: yellow;
-	color:black;
-	border: 3px solid black;
+	color: white;
 }
 
 .sign-out {
@@ -58,7 +51,5 @@
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background: yellow;
-	color: black;
-	border: 3px solid black;
+	color: white;
 }

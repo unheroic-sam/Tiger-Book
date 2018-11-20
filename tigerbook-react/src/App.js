@@ -6,6 +6,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
 import Home from './components/Home/Home';
 import { UtilContextProvider } from './context/utilContext';
+import Account from './components/Account/Account';
 
 class App extends Component {
   
@@ -15,6 +16,7 @@ class App extends Component {
 			isSignedIn: false,
 			route: 'signIn',
       showPostCreate: false,
+      displayAccountPage: false,
       user: {
         id: '',
         name: '',
@@ -51,22 +53,31 @@ class App extends Component {
       this.setState({showPostCreate: false})
     }
   }
-  	
-  	render() {
-    	const { isSignedIn, route, showPostCreate } = this.state;
+
+  render() {
+    	const { isSignedIn, route, showPostCreate, displayAccountPage } = this.state;
       return (
         <UtilContextProvider>
-      		<Fragment>
-            <NavigationBar onRouteChangePost={this.onRouteChangePost} isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
+          <Fragment>
+            <NavigationBar 
+              onRouteChangePost={this.onRouteChangePost} 
+              isSignedIn={isSignedIn} 
+              onRouteChange={this.onRouteChange} 
+              showPostCreate={showPostCreate}
+              route={route}
+            />
             { route === 'home'
       				? <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
-      			:(
-      					route === 'register'
-                ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
-                :<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
-
-      			)
-      		}
+            :(
+      					route === 'Account'
+                ?<Account />
+                :(
+                    route === 'register'
+                    ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
+                    :<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
+                )
+            )
+          }
       		</Fragment>
           </UtilContextProvider>
     	);

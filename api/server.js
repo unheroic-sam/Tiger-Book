@@ -104,7 +104,7 @@ app.get('/getPosts', (req,res) => {
 				return res.json(posts)
 			})
 		})
-})		
+})
 
 app.listen(3000, () => {
 	console.log('app is running on port 3000');

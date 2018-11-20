@@ -40,7 +40,5 @@ class LiveFeed extends React.Component {
 			</PostsContextConsumer>
 		);
 	}
-
 }
-
 export default LiveFeed;
