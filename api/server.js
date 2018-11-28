@@ -91,8 +91,14 @@ app.post('/submitPost', (req,res) => {
 })
 
 app.get('/getPosts', (req,res) => {
-	db.select('*').from('posts').orderBy('created', 'desc')
-		.then(posts => {
+
+	const query = db.select('*').from('posts').orderBy('created', 'desc');
+
+	if(req.query.user_id) {
+		query.where('user_id', '=', req.query.user_id)
+	}
+	
+	query.then(posts => {
 			Promise.all(posts.map(post => {
 				return db.select('name', 'profile_picture').from('users').where('id', '=', post.user_id)
 				.first()

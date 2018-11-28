@@ -5,7 +5,7 @@ import CreatePostBox from './components/CreatePostBox/CreatePostBox';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import './App.css';
 import Home from './components/Home/Home';
-import { UtilContextProvider } from './context/utilContext';
+import { UtilContextProvider, UtilContextConsumer } from './context/utilContext';
 import Account from './components/Account/Account';
 
 class App extends Component {
@@ -58,27 +58,31 @@ class App extends Component {
     	const { isSignedIn, route, showPostCreate, displayAccountPage } = this.state;
       return (
         <UtilContextProvider>
-          <Fragment>
-            <NavigationBar 
-              onRouteChangePost={this.onRouteChangePost} 
-              isSignedIn={isSignedIn} 
-              onRouteChange={this.onRouteChange} 
-              showPostCreate={showPostCreate}
-              route={route}
-            />
-            { route === 'home'
-      				? <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
-            :(
-      					route === 'Account'
-                ?<Account />
-                :(
-                    route === 'register'
-                    ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
-                    :<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
-                )
-            )
-          }
-      		</Fragment>
+        <UtilContextConsumer>
+         {(utilContext) => (
+            <Fragment>
+              <NavigationBar 
+                onRouteChangePost={this.onRouteChangePost} 
+                isSignedIn={isSignedIn} 
+                onRouteChange={this.onRouteChange} 
+                showPostCreate={showPostCreate}
+                route={route}
+              />
+              { route === 'home'
+                ? <Home onRouteChangePost={this.onRouteChangePost} onRouteChange={this.onRouteChange} showPostCreate={showPostCreate}/>
+              :(
+                  route === 'Account'
+                  ?<Account user={utilContext.state.user}/>
+                  :(
+                      route === 'register'
+                      ?<Register onRouteChange={this.onRouteChange}  loadUser={this.loadUser}/>
+                      :<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
+                  )
+              )
+            }
+            </Fragment>
+          )}
+          </UtilContextConsumer>
           </UtilContextProvider>
     	);
   	};
